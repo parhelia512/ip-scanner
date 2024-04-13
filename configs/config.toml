@@ -47,7 +47,7 @@ WithIPv6 = false
 # URL for testing HTTPS connection
 HttpsURL = "https://translate.google.com"
 # Domains for write into hosts file
-Domains = ["translate.google.com", "translate.googleapis.com"]
+Domains = ["translate.google.com", "translate.googleapis.com","translate-pa.googleapis.com"]
 
 [[Sites]]
 Name = "Cloudflare"

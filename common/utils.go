@@ -228,7 +228,7 @@ func Copy(srcPath, dstPath string) (err error) {
 
 // modifyHosts: only use for Google Translate
 func modifyHosts(hostsFile string, ip string, domains []string) error {
-	f, err := os.OpenFile(hostsFile, os.O_RDWR, 0644)
+	f, err := os.OpenFile(hostsFile, os.O_RDWR, 0o644)
 	if err != nil {
 		return err
 	}
@@ -240,16 +240,21 @@ func modifyHosts(hostsFile string, ip string, domains []string) error {
 	}
 	var builder strings.Builder
 	scanner := bufio.NewScanner(f)
+	// var gLabel []string
+	// gLabel = append(gLabel, "# Google翻译")
+	gLabel := []string{"# Google翻译"}
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strContainSlice(line, domains) {
+		if strContainSlice(line, domains) || strContainSlice(line, gLabel) {
 			continue
 		}
 		builder.WriteString(line + lineSeparator)
 	}
 	builder.WriteString(lineSeparator)
+
+	builder.WriteString("# Google翻译\n")
 	for _, domain := range domains {
-		line := fmt.Sprintf("%s\t%s", ip, domain) + lineSeparator
+		line := fmt.Sprintf("%s %s", ip, domain) + lineSeparator
 		builder.WriteString(line)
 	}
 	err = f.Truncate(0)
