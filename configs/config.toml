@@ -4,7 +4,7 @@ Site = "GoogleTranslate"
 # A boolean that turns on/off debug mode. true or false
 Debug = false
 # workers
-Workers = 300
+Workers = 1000
 # Limit the maximum number of IPs scanned. No limit if it is less than or equal to 0.
 ScannedLimit = 0
 # Limit the maximum number of IPs found. No limit if it is less than or equal to 0.
@@ -20,7 +20,7 @@ Count = 3
 # Millisecond
 Timeout = 500
 # true: it's legal if it succeeds every time. false: it's legal if it has one succeeds
-all = true
+all = false
 
 [HTTP]
 # Standard HTTPS ports are 443 and 8443.
